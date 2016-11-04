@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Calculator" />
-        <activity android:name=".Flashlight" />
+        <activity android:name=".Flashlight"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Notepad"></activity>
     </application>
 
