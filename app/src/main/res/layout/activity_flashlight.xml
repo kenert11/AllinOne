@@ -5,6 +5,7 @@
     android:id="@+id/activity_flashlight"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="#000"
     android:gravity="center"
     tools:context="com.example.kenert.allinoneapp.Flashlight">
@@ -17,6 +18,30 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/flashOnOffButton"
         android:background="#000"
-        android:adjustViewBounds="false"
-        android:onClick="flashButtonClicked" />
+        android:onClick="flashButtonClicked"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="false" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:id="@+id/seekBar"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="25dp"
+        style="@style/Widget.AppCompat.SeekBar"
+        android:thumbTint="@color/Greeny"
+        android:layout_below="@+id/flashOnOffButton"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Adjust Strobo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/seekBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:id="@+id/textView"
+        android:fontFamily="sans-serif-smallcaps" />
 </RelativeLayout>
