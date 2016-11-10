@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_flashlight"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#ffffff"
+    android:gravity="center"
+    tools:context="com.example.kenert.allinoneapp.Flashlight">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/screenoffbutton"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/screenFlashOnOffButton"
+        android:background="#ffffff"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="false"
+        android:onClick="screenFlashButtonClicked" />
+    <Button
+        android:text="LED"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/screenFlashOnOffButton"
+        android:layout_marginStart="38dp"
+        android:layout_marginBottom="17dp"
+        android:id="@+id/ledButtonScreen"
+        android:background="#aa0000"
+        style="@android:style/Widget.Material.Light.Button.Toggle"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+        android:onClick="ledButtonClickedTwo" />
+
+    <Button
+        android:text="SCREEN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ledButtonScreen"
+        android:layout_alignEnd="@+id/screenFlashOnOffButton"
+        android:layout_marginEnd="40dp"
+        android:id="@+id/screenButtonScreen"
+        android:background="#aa0000"
+        style="@android:style/Widget.Material.Light.Button.Toggle"
+        android:fontFamily="sans-serif-smallcaps"
+        android:onClick="screenButtonClickedTwo" />
+</RelativeLayout>
