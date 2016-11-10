@@ -2,6 +2,7 @@ package com.example.kenert.allinoneapp;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
@@ -30,7 +31,7 @@ public class Flashlight extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashlight);
-        flashlightButton = (ImageButton) findViewById(R.id.flashOnOffButton);
+        flashlightButton = (ImageButton) findViewById(R.id.screenFlashOnOffButton);
         flashlightOnOrOff = false;
 
 
@@ -157,6 +158,13 @@ public class Flashlight extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void ledButtonClicked(View view){
+        return;
+    }
+    public void screenButtonClicked(View view){
+        Intent screen = new Intent(this,ScreenFlashlight.class);
+        startActivity(screen);
     }
 
 
