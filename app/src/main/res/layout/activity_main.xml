@@ -11,37 +11,37 @@
     android:paddingTop="0dp"
     tools:context="com.example.kenert.allinoneapp.MainActivity">
 
+
+
+
     <ImageButton
-        app:srcCompat="@android:drawable/btn_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/flashlightbutton3"
         android:id="@+id/flashlightButton"
-        android:adjustViewBounds="false"
-        android:layout_height="350dp"
-        android:layout_width="450dp"
+        android:background="#ffc125"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="flashlightButtonClicked" />
 
     <ImageButton
-        android:layout_height="50dp"
-        app:srcCompat="@android:drawable/btn_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/notepadbutton2"
+        android:layout_centerVertical="true"
+        android:background="#65b858"
+        android:layout_centerHorizontal="true"
         android:id="@+id/notepadButton"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="342dp"
-        android:layout_width="160dp"
         android:onClick="notepadButtonClicked" />
 
     <ImageButton
-        app:srcCompat="@android:drawable/btn_dialog"
-        android:id="@+id/calculatorButton"
-        android:onClick="calculatorButtonClicked"
-        android:layout_height="150dp"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/nightmodebutton"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/notepadButton" />
+        android:layout_centerHorizontal="true"
+        android:background="#fe5656"
+        android:id="@+id/nightModeButton"
+        android:onClick="nightmodeButtonClicked" />
+
 </RelativeLayout>

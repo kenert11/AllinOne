@@ -13,9 +13,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public void calculatorButtonClicked(View view){
-        Intent calcu = new Intent(this, Calculator.class);
-        startActivity(calcu);
+    public void nightmodeButtonClicked(View view){
+        Intent night = new Intent(this, Nightmode.class);
+        startActivity(night);
     }
     public void flashlightButtonClicked(View view){
         Intent flash = new Intent(this, Flashlight.class);

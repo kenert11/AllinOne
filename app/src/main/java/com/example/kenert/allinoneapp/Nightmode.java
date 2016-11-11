@@ -3,11 +3,11 @@ package com.example.kenert.allinoneapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Calculator extends AppCompatActivity {
+public class Nightmode extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calculator);
+        setContentView(R.layout.activity_nightmode);
     }
 }
