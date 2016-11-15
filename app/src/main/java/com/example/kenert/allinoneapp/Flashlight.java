@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -25,13 +27,16 @@ public class Flashlight extends AppCompatActivity {
     int freg;
     Thread th;
     Strobo sr;
+    private Camera camera;
+    Camera.Parameters params;
+    SeekBar skbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashlight);
-        flashlightButton = (ImageButton) findViewById(R.id.screenFlashOnOffButton);
+        flashlightButton = (ImageButton) findViewById(R.id.flashOnOffButton);
         flashlightOnOrOff = false;
 
 
@@ -85,13 +90,17 @@ public class Flashlight extends AppCompatActivity {
     }
 
     public void flashButtonClicked(View view) {
+
         try {
             if (flashlightOnOrOff) {
                 flashlightOnOrOff = false;
+
                 if (th != null) {
                     sr.stopRunning = true;
                     th = null;
+
                     return;
+
                 } else {
                     turnOffFlashlight();
                 }
@@ -99,11 +108,13 @@ public class Flashlight extends AppCompatActivity {
 
             } else {
                 flashlightOnOrOff = true;
+
                 if (freg != 0) {
                     sr = new Strobo();
                     sr.freg = freg;
                     th = new Thread(sr);
                     th.start();
+                    flashlightButton.setImageResource(R.drawable.onbutton2);
                     return;
                 } else {
                     turnOnFlashlight();
@@ -142,6 +153,13 @@ public class Flashlight extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 cm.setTorchMode(mCameraId, false);
                 flashlightButton.setImageResource(R.drawable.offbutton2);
+
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                params = camera.getParameters();
+                params.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                camera.setParameters(params);
+                camera.stopPreview();
+                flashlightButton.setImageResource(R.drawable.offbutton2);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -149,21 +167,31 @@ public class Flashlight extends AppCompatActivity {
     }
 
     public void turnOnFlashlight() {
+
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 cm.setTorchMode(mCameraId, true);
                 flashlightButton.setImageResource(R.drawable.onbutton2);
 
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                params = camera.getParameters();
+                params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                camera.setParameters(params);
+                camera.startPreview();
+                flashlightButton.setImageResource(R.drawable.onbutton2);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void ledButtonClicked(View view){
+
+    public void ledButtonClicked(View view) {
         return;
     }
-    public void screenButtonClicked(View view){
-        Intent screen = new Intent(this,ScreenFlashlight.class);
+
+    public void screenButtonClicked(View view) {
+        Intent screen = new Intent(this, ScreenFlashlight.class);
         startActivity(screen);
     }
 
@@ -172,20 +200,42 @@ public class Flashlight extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        flashlightOnOrOff = false;
+        turnOffFlashlight();
+        if (camera != null) {
+            camera.release();
+            camera = null;
+        }
+
     }
 
     //What flashlight does on Pause
     @Override
     protected void onPause() {
         super.onPause();
-        flashlightOnOrOff = false;
+        turnOffFlashlight();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        try {
+            camera = Camera.open();
+            params = camera.getParameters();
+        } catch (RuntimeException e) {
+            Log.e("Camera error", e.getMessage());
+        }
     }
 
     //What flashlight does on Resume
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        flashlightOnOrOff = true;
+    protected void onResume() {
+        super.onResume();
+        turnOffFlashlight();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        turnOffFlashlight();
     }
 }

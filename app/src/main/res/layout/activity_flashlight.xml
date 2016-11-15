@@ -16,9 +16,10 @@
         app:srcCompat="@drawable/offbutton2"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/screenFlashOnOffButton"
+        android:id="@+id/flashOnOffButton"
         android:background="#000"
         android:onClick="flashButtonClicked"
+        android:clickable="true"
         android:scaleType="fitCenter"
         android:adjustViewBounds="false" />
 
@@ -32,7 +33,7 @@
         android:layout_marginTop="25dp"
         style="@style/Widget.AppCompat.SeekBar"
         android:thumbTint="@color/Greeny"
-        android:layout_below="@+id/screenFlashOnOffButton"
+        android:layout_below="@+id/flashOnOffButton"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -50,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/screenFlashOnOffButton"
+        android:layout_alignStart="@+id/flashOnOffButton"
         android:layout_marginStart="38dp"
         android:layout_marginBottom="17dp"
         android:id="@+id/ledButtonScreen"
@@ -64,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/ledButtonScreen"
-        android:layout_alignEnd="@+id/screenFlashOnOffButton"
+        android:layout_alignEnd="@+id/flashOnOffButton"
         android:layout_marginEnd="40dp"
         android:id="@+id/screenButton"
         android:background="#aa0000"

@@ -1,14 +1,17 @@
 package com.example.kenert.allinoneapp;
 
-import android.content.Intent;
+
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
 public class ScreenFlashlight extends AppCompatActivity {
+    private static String tag;
+    private static final String TAG = tag;
     private boolean brightnessOnOff;
     private ImageButton screenFlashOnOffButton;
 
@@ -19,27 +22,29 @@ public class ScreenFlashlight extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_flashlight);
-        screenFlashOnOffButton = (ImageButton) findViewById(R.id.screenFlashOnOffButton);
+        screenFlashOnOffButton = (ImageButton) findViewById(R.id.flashOnOffButton);
         brightnessOnOff = false;
 
-    Intent grantintent= new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-        grantintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(grantintent);
+
     }
+
     public void screenFlashButtonClicked(View view) {
+
         try {
             if (brightnessOnOff) {
-
+                brightnessOnOff = false;
                 turnBrightnessOff();
-            } else{
-                    brightnessOnOff = true;
+                Log.d(TAG, "screenFlashButtonClicked: ");
+            } else {
+                brightnessOnOff = true;
                 turnBrightnessOn();
+                Log.d(TAG, "screenFlashButtonClicked: ");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
+    }
 
 
     private void turnBrightnessOn() {
@@ -49,7 +54,7 @@ public class ScreenFlashlight extends AppCompatActivity {
             //Screen refresh to add brightness
 
             WindowManager.LayoutParams lp = getWindow().getAttributes();
-            lp.screenBrightness = currentBrightness/ 100.0f;
+            lp.screenBrightness = currentBrightness / 100.0f;
             getWindow().setAttributes(lp);
 
 
@@ -74,11 +79,39 @@ public class ScreenFlashlight extends AppCompatActivity {
 
 
     public void ledButtonClickedTwo(View view) {
-        Intent led = new Intent(this, Flashlight.class);
-        startActivity(led);
+        finish();
     }
 
     public void screenButtonClickedTwo(View view) {
         return;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        turnBrightnessOff();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        turnBrightnessOff();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        turnBrightnessOff();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        turnBrightnessOff();
     }
 }
