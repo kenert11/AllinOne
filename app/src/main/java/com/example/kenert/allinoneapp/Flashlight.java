@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -29,7 +30,7 @@ public class Flashlight extends AppCompatActivity {
     Strobo sr;
     private Camera camera;
     Camera.Parameters params;
-    SeekBar skbar;
+
 
 
     @Override
@@ -98,6 +99,13 @@ public class Flashlight extends AppCompatActivity {
                 if (th != null) {
                     sr.stopRunning = true;
                     th = null;
+                    SeekBar skbar = (SeekBar) findViewById(R.id.seekBar);
+                    skbar.setOnTouchListener(new View.OnTouchListener(){
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            return false;
+                        }
+                    });
 
                     return;
 
@@ -109,15 +117,24 @@ public class Flashlight extends AppCompatActivity {
             } else {
                 flashlightOnOrOff = true;
 
+
                 if (freg != 0) {
                     sr = new Strobo();
                     sr.freg = freg;
                     th = new Thread(sr);
                     th.start();
                     flashlightButton.setImageResource(R.drawable.onbutton2);
+                    SeekBar skbar = (SeekBar) findViewById(R.id.seekBar);
+                    skbar.setOnTouchListener(new View.OnTouchListener(){
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            return true;
+                        }
+                    });
                     return;
                 } else {
                     turnOnFlashlight();
+
                 }
             }
         } catch (Exception ec) {
@@ -167,6 +184,7 @@ public class Flashlight extends AppCompatActivity {
     }
 
     public void turnOnFlashlight() {
+
 
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

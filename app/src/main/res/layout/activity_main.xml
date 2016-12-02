@@ -27,12 +27,12 @@
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:srcCompat="@drawable/notepadbutton2"
+        app:srcCompat="@drawable/todobutton"
         android:layout_centerVertical="true"
         android:background="#65b858"
         android:layout_centerHorizontal="true"
-        android:id="@+id/notepadButton"
-        android:onClick="notepadButtonClicked" />
+        android:id="@+id/TodoButton"
+        android:onClick="ToDoButtonClicked" />
 
     <ImageButton
         android:layout_width="match_parent"

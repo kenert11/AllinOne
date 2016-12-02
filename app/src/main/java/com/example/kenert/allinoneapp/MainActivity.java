@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
         Intent flash = new Intent(this, Flashlight.class);
         startActivity(flash);
     }
-    public void notepadButtonClicked(View view){
-        Intent note = new Intent(this, Notepad.class);
-        startActivity(note);
+    public void ToDoButtonClicked(View view){
+        Intent todo = new Intent(this, ToDoList.class);
+        startActivity(todo);
     }
 
 }
