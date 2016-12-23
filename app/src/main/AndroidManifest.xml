@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kenert.allinoneapp">
+    package="studio.tsooj.kenert.allinoneapp">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.flash" />
@@ -16,7 +18,7 @@
         android:supportsRtl="true">
         >
         <activity
-            android:name=".MainActivity"
+            android:name="studio.tsooj.kenert.allinoneapp.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -26,23 +28,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Flashlight"
+            android:name="studio.tsooj.kenert.allinoneapp.Flashlight"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ScreenFlashlight"
+            android:name="studio.tsooj.kenert.allinoneapp.ScreenFlashlight"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Nightmode"
+            android:name="studio.tsooj.kenert.allinoneapp.Nightmode"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ToDoList"
+            android:name="studio.tsooj.kenert.allinoneapp.ToDoList"
             android:theme="@style/Theme.AppCompat" />
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
 
         <service
-            android:name=".NightmodeService"
+            android:name="studio.tsooj.kenert.allinoneapp.NightmodeService"
             android:enabled="true"
             android:exported="true"></service>
     </application>

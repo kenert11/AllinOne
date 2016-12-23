@@ -1,4 +1,4 @@
-package com.example.kenert.allinoneapp.TaskTable;
+package studio.tsooj.kenert.allinoneapp.TaskTable;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

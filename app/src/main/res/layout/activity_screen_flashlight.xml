@@ -2,13 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_flashlight"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     android:background="#ffffff"
     android:gravity="center"
-    tools:context="com.example.kenert.allinoneapp.Flashlight">
+    tools:context="studio.tsooj.kenert.allinoneapp.Flashlight">
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -47,4 +48,15 @@
         style="@android:style/Widget.Material.Light.Button.Toggle"
         android:fontFamily="sans-serif-smallcaps"
         android:onClick="screenButtonClickedTwo" />
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adscreenflash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/screenflash">
+    </com.google.android.gms.ads.AdView>
+
+
 </RelativeLayout>

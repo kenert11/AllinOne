@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Allin1</string>
+    <string name="night_mode">ca-app-pub-9971143827365452/9527972723</string>
+    <string name="flashlight">ca-app-pub-9971143827365452/4539369921</string>
+    <string name="screenflash">ca-app-pub-9971143827365452/8969569522</string>
+    <string name="todolist">ca-app-pub-9971143827365452/2923035922</string>
 </resources>

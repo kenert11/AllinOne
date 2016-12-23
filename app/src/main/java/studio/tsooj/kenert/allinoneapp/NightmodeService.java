@@ -1,4 +1,4 @@
-package com.example.kenert.allinoneapp;
+package studio.tsooj.kenert.allinoneapp;
 
 import android.app.Service;
 import android.content.Intent;

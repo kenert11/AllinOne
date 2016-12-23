@@ -1,4 +1,4 @@
-package com.example.kenert.allinoneapp;
+package studio.tsooj.kenert.allinoneapp;
 
 
 import android.provider.Settings;
@@ -8,12 +8,17 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.tsooj.kenert.allinoneapp.R;
 
 public class ScreenFlashlight extends AppCompatActivity {
     private static String tag;
     private static final String TAG = tag;
     private boolean brightnessOnOff;
     private ImageButton screenFlashOnOffButton;
+    private AdView mAdView;
+
 
     public ScreenFlashlight() throws Settings.SettingNotFoundException {
     }
@@ -22,6 +27,9 @@ public class ScreenFlashlight extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_flashlight);
+        mAdView = (AdView) findViewById(R.id.adscreenflash);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         screenFlashOnOffButton = (ImageButton) findViewById(R.id.flashOnOffButton);
         brightnessOnOff = false;
 
@@ -90,6 +98,9 @@ public class ScreenFlashlight extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         turnBrightnessOff();
+        if(mAdView != null){
+            mAdView.resume();
+        }
     }
 
     @Override
@@ -105,12 +116,18 @@ public class ScreenFlashlight extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if(mAdView != null){
+            mAdView.destroy();
+        }
         super.onDestroy();
         turnBrightnessOff();
     }
 
     @Override
     protected void onPause() {
+        if(mAdView != null){
+            mAdView.pause();
+        }
         super.onPause();
         turnBrightnessOff();
     }

@@ -1,4 +1,4 @@
-package com.example.kenert.allinoneapp;
+package studio.tsooj.kenert.allinoneapp;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,6 +16,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.tsooj.kenert.allinoneapp.R;
 
 import static android.content.DialogInterface.*;
 
@@ -30,6 +33,7 @@ public class Flashlight extends AppCompatActivity {
     Strobo sr;
     private Camera camera;
     Camera.Parameters params;
+    private AdView mAdView;
 
 
 
@@ -39,6 +43,10 @@ public class Flashlight extends AppCompatActivity {
         setContentView(R.layout.activity_flashlight);
         flashlightButton = (ImageButton) findViewById(R.id.flashOnOffButton);
         flashlightOnOrOff = false;
+        mAdView = (AdView) findViewById(R.id.adflashlight);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
 
 
         //Error if device does not have flashlight
@@ -229,6 +237,9 @@ public class Flashlight extends AppCompatActivity {
     //What flashlight does on Pause
     @Override
     protected void onPause() {
+        if(mAdView != null){
+            mAdView.pause();
+        }
         super.onPause();
         turnOffFlashlight();
     }
@@ -249,10 +260,16 @@ public class Flashlight extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         turnOffFlashlight();
+        if(mAdView != null){
+            mAdView.resume();
+        }
     }
 
     @Override
     protected void onDestroy() {
+        if(mAdView != null){
+            mAdView.destroy();
+        }
         super.onDestroy();
         turnOffFlashlight();
     }

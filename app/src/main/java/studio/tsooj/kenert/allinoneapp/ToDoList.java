@@ -1,4 +1,4 @@
-package com.example.kenert.allinoneapp;
+package studio.tsooj.kenert.allinoneapp;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -15,9 +15,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.tsooj.kenert.allinoneapp.R;
 
-import com.example.kenert.allinoneapp.TaskTable.TaskContract;
-import com.example.kenert.allinoneapp.TaskTable.TaskDbHelper;
+import studio.tsooj.kenert.allinoneapp.TaskTable.TaskContract;
+import studio.tsooj.kenert.allinoneapp.TaskTable.TaskDbHelper;
 
 import java.util.ArrayList;
 
@@ -26,6 +29,7 @@ public class ToDoList extends AppCompatActivity {
     private TaskDbHelper cusHelper;
     private ListView todo_list;
     private ArrayAdapter<String> cusAdapter;
+    private AdView mAdView;
 
 
 
@@ -37,6 +41,9 @@ public class ToDoList extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
+        mAdView = (AdView) findViewById(R.id.adtodolist);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         //Update the task list when app is opened
         updateTasks();
 
@@ -117,5 +124,29 @@ public class ToDoList extends AppCompatActivity {
         " = ?",new String[]{task});
         sqLiteDatabase.close();
         updateTasks();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(mAdView != null){
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(mAdView !=null){
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        if(mAdView !=null){
+            mAdView.pause();
+        }
+        super.onPause();
     }
 }

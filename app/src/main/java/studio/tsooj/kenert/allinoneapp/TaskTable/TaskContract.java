@@ -1,4 +1,4 @@
-package com.example.kenert.allinoneapp.TaskTable;
+package studio.tsooj.kenert.allinoneapp.TaskTable;
 
 /**
  * Created by kenert on 27.11.2016.

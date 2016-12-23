@@ -1,4 +1,4 @@
-package com.example.kenert.allinoneapp;
+package studio.tsooj.kenert.allinoneapp;
 
 
 import android.content.Intent;
@@ -9,16 +9,23 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.tsooj.kenert.allinoneapp.R;
 
 public class Nightmode extends AppCompatActivity {
     private boolean nightmodeOnOff;
     public ImageButton modeOnOffButton;
     private int brightness;
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nightmode);
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         modeOnOffButton = (ImageButton) findViewById(R.id.nightmodeOnOffButton);
         nightmodeOnOff = false;
@@ -120,6 +127,9 @@ public class Nightmode extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if(mAdView != null){
+            mAdView.resume();
+        }
 
     }
 
@@ -136,12 +146,18 @@ public class Nightmode extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if(mAdView != null){
+            mAdView.destroy();
+        }
         super.onDestroy();
 
     }
 
     @Override
     protected void onPause() {
+        if(mAdView != null){
+            mAdView.pause();
+        }
         super.onPause();
 
     }
